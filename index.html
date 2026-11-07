@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>2nd Brain – Öffnen. Schreiben. Schliessen.</title>
+  <meta name="description" content="2nd Brain ist die ruhige Notiz-App für iPhone, iPad und Mac: öffnen, Gedanken aufschreiben, fertig. Am Abend in Ruhe sortieren.">
+  <meta name="apple-itunes-app" content="app-id=6829497962">
+  <meta property="og:title" content="2nd Brain">
+  <meta property="og:description" content="Öffnen. Schreiben. Schliessen. Die ruhige Notiz-App für iPhone, iPad und Mac.">
+  <meta property="og:image" content="https://2ndbrain.ch/img/01-write.jpg">
+  <link rel="icon" href="icons/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <style>
+    :root {
+      --bg: #fbfaf7; --fg: #1d1d1b; --muted: #6f6b64; --line: #ebe8e1; --card: #ffffff; --accent: #1d1d1b;
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", Roboto, sans-serif;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #121212; --fg: #e9e7e2; --muted: #969390; --line: #262523; --card: #1a1a19; --accent: #e9e7e2; color-scheme: dark; }
+      .mark { filter: invert(1); }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.55 var(--font); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+    :focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; border-radius: 6px; }
+
+    /* Kopf */
+    header { padding: calc(env(safe-area-inset-top) + 56px) 0 40px; text-align: center; }
+    .mark { width: 72px; height: 72px; opacity: .9; }
+    h1 { font-size: clamp(2.4rem, 7vw, 3.6rem); line-height: 1.05; letter-spacing: -.03em; margin: 18px 0 10px; font-weight: 650; }
+    .claim { font-size: clamp(1.15rem, 3vw, 1.4rem); color: var(--muted); margin: 0 auto; max-width: 30em; }
+    .lead { max-width: 34em; margin: 18px auto 0; }
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 28px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px;
+      border-radius: 14px; font-weight: 550; text-decoration: none; font-size: 1rem; }
+    .btn.primary { background: var(--accent); color: var(--bg); }
+    .btn.secondary { border: 1px solid var(--line); background: var(--card); }
+    .small { font-size: .9rem; color: var(--muted); }
+    .platforms { margin-top: 14px; }
+
+    /* Bildschirmfotos */
+    .shots { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 12px 20px 26px;
+      margin: 0 auto; max-width: 1240px; -webkit-overflow-scrolling: touch; }
+    .shots img { flex: 0 0 auto; width: min(62vw, 250px); height: auto; aspect-ratio: 660 / 1434; border-radius: 22px;
+      scroll-snap-align: center; box-shadow: 0 12px 40px rgba(0, 0, 0, .10); background: var(--line); }
+    /* zentriert, solange alles Platz hat – sonst scrollbar ohne abgeschnittenen Anfang */
+    .shots img:first-child { margin-left: auto; } .shots img:last-child { margin-right: auto; }
+
+    section { padding: 48px 0; }
+    h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); letter-spacing: -.02em; margin: 0 0 8px; font-weight: 650; }
+    .intro { color: var(--muted); margin: 0 0 26px; max-width: 36em; }
+
+    /* Funktionen */
+    .features { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; padding: 0; margin: 0; list-style: none; }
+    .features li { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; }
+    .features b { display: block; font-size: 1.02rem; margin-bottom: 4px; }
+    .features span { color: var(--muted); font-size: .95rem; }
+
+    /* Kontakt & FAQ */
+    .contact { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 26px; }
+    .contact .btn { margin-top: 6px; }
+    details { border-top: 1px solid var(--line); padding: 14px 0; }
+    details:last-child { border-bottom: 1px solid var(--line); }
+    summary { cursor: pointer; font-weight: 550; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--muted); font-weight: 400; }
+    details[open] summary::after { content: "–"; }
+    details p { margin: 8px 0 0; color: var(--muted); }
+    .faq { margin-top: 28px; }
+
+    footer { padding: 40px 0 calc(env(safe-area-inset-bottom) + 40px); color: var(--muted); font-size: .9rem; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 10px; }
+    footer a { color: var(--fg); text-underline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <img class="mark" src="icons/mark.png" alt="">
+    <h1>2nd Brain</h1>
+    <p class="claim">Öffnen. Schreiben. Schliessen.</p>
+    <p class="lead">Die ruhige Notiz-App: Beim Öffnen wartet ein leeres Blatt mit Cursor. Du schreibst deinen Gedanken auf
+      und legst ihn weg. Sortiert wird am Abend, in Ruhe.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://apps.apple.com/app/id6829497962">Im App Store laden</a>
+      <a class="btn secondary" href="#funktionen">Was 2nd Brain kann</a>
+    </div>
+    <p class="small platforms">Für iPhone, iPad und Mac · kostenlos · ohne Werbung und Tracking</p>
+  </header>
+
+  <div class="shots" role="region" aria-label="Bildschirmfotos" tabindex="0">
+    <img src="img/01-write.jpg" alt="Leeres Blatt mit Cursor: Öffnen, Schreiben, Schliessen" loading="lazy" width="660" height="1434">
+    <img src="img/02-photo.jpg" alt="Notiz mit angehängtem Foto" loading="lazy" width="660" height="1434">
+    <img src="img/03-tags.jpg" alt="Kategorie-Vorschläge beim Tippen von #" loading="lazy" width="660" height="1434">
+    <img src="img/04-today.jpg" alt="Abendrückblick: der Tag auf einen Blick" loading="lazy" width="660" height="1434">
+    <img src="img/05-week.jpg" alt="Wochenrückblick im dunklen Modus" loading="lazy" width="660" height="1434">
+    <img src="img/06-all.jpg" alt="Alle Notizen mit Suche und Kategorien" loading="lazy" width="660" height="1434">
+  </div>
+
+  <main class="wrap">
+    <section id="funktionen" aria-labelledby="f-title">
+      <h2 id="f-title">Funktionen</h2>
+      <p class="intro">Alles, was du für schnelle Gedanken brauchst, und nichts, was ablenkt.</p>
+      <ul class="features">
+        <li><b>Sofort schreiben</b><span>Leeres Blatt beim Öffnen, alles speichert automatisch. Nach unten ziehen legt die Notiz weg.</span></li>
+        <li><b>Bilder</b><span>Fotos aufnehmen oder aus der Mediathek anhängen, gross ansehen, zoomen und in Fotos sichern.</span></li>
+        <li><b>#Kategorien & Listen</b><span>Tippe # und 2nd Brain schlägt Kategorien vor. Listen mit - setzen sich selbst fort.</span></li>
+        <li><b>Abend- & Wochenrückblick</b><span>Am Abend den Tag in Ruhe sortieren, am Sonntag ein Blick auf die Woche.</span></li>
+        <li><b>Erinnerungen</b><span>Aus einer #aufgabe wird mit einem Tipp eine Erinnerung zur gewünschten Zeit.</span></li>
+        <li><b>Sync auf allen Geräten</b><span>Optional mit Konto: Notizen und Bilder auf iPhone, iPad und Mac.</span></li>
+        <li><b>Face ID</b><span>Private Gedanken bleiben privat, die App sperrt sich auf Wunsch.</span></li>
+        <li><b>Teilen</b><span>Notizen als Text oder als Link teilen, der in 2nd Brain der anderen Person aufgeht.</span></li>
+        <li><b>Widget, Siri & Teilen-Menü</b><span>„Neuer Gedanke“ per Widget oder Kurzbefehl, Inhalte aus anderen Apps übernehmen.</span></li>
+        <li><b>iPad & Mac</b><span>Grosses Layout, Tastaturkürzel und Bedienung mit Maus und Trackpad.</span></li>
+        <li><b>Bedienungshilfen</b><span>VoiceOver, grössere Schrift, hoher Kontrast, dunkler Modus und reduzierte Bewegung.</span></li>
+        <li><b>Deine Daten</b><span>Ohne Konto bleibt alles auf deinem Gerät. Keine Werbung, kein Tracking.</span></li>
+      </ul>
+    </section>
+
+    <section id="kontakt" aria-labelledby="k-title">
+      <h2 id="k-title">Kontakt & Support</h2>
+      <div class="contact">
+        <p>Fragen, Fehler oder Ideen? Schreib mir, ich antworte persönlich. In der App geht es auch direkt unter
+          Einstellungen → Hilfe → „Feedback senden“.</p>
+        <a class="btn primary" href="mailto:fabioberta@me.com?subject=2nd%20Brain">E-Mail an fabioberta@me.com</a>
+
+        <div class="faq">
+          <details>
+            <summary>Kostet 2nd Brain etwas?</summary>
+            <p>Nein. 2nd Brain ist kostenlos, ohne Werbung und ohne Abo.</p>
+          </details>
+          <details>
+            <summary>Wo werden meine Notizen gespeichert?</summary>
+            <p>Ohne Konto nur auf deinem Gerät. Mit Cloud-Sync zusätzlich verschlüsselt übertragen in Google Firebase, damit sie
+              auf all deinen Geräten verfügbar sind. Nur du hast Zugriff. Mehr dazu im <a href="privacy.html">Datenschutz</a>.</p>
+          </details>
+          <details>
+            <summary>Wie synchronisiere ich iPhone, iPad und Mac?</summary>
+            <p>In der App unter Einstellungen → Cloud-Sync mit Apple, Google oder E-Mail anmelden, auf jedem Gerät mit demselben Konto.</p>
+          </details>
+          <details>
+            <summary>Wie lösche ich mein Konto und meine Daten?</summary>
+            <p>Einstellungen → Cloud-Sync → „Konto löschen“ entfernt das Konto und alle Daten in der Cloud. „Alles löschen“ unter
+              Daten entfernt die Notizen auf dem Gerät.</p>
+          </details>
+          <details>
+            <summary>Ein geteilter Link öffnet die App nicht?</summary>
+            <p>Ohne installierte App zeigt der Link die Notiz im Browser. Ist 2nd Brain installiert, tippe auf „In 2nd Brain öffnen“.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <nav aria-label="Fusszeile">
+      <a href="privacy.html">Datenschutz</a>
+      <a href="#kontakt">Kontakt & Support</a>
+      <a href="https://apps.apple.com/app/id6829497962">App Store</a>
+    </nav>
+    © 2026 Fabio Andrea Berta
+  </footer>
+</body>
+</html>
