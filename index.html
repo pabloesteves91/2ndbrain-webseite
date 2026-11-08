@@ -72,6 +72,10 @@
     details[open] summary::after { content: "–"; }
     details p { margin: 8px 0 0; color: var(--muted); }
     .faq { margin-top: 28px; }
+    .gift { margin: 16px 0 10px; padding: 18px 20px; border-radius: 18px; border: 1.5px solid var(--fg); background: var(--card); }
+    .gift b { display: block; margin-bottom: 4px; }
+    .gift span { color: var(--muted); font-size: .95rem; }
+    .gift strong { color: var(--fg); }
 
     footer { padding: 40px 0 calc(env(safe-area-inset-bottom) + 40px); color: var(--muted); font-size: .9rem; }
     footer nav { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 10px; }
@@ -130,8 +134,13 @@
         <li><b>Plus · Jahr · CHF 9</b><span>🥪 wie ein Sandwich – fürs ganze Jahr. Die ersten 14 Tage gratis.</span></li>
         <li><b>Plus · für immer · CHF 24</b><span>📖 wie ein Taschenbuch – einmalig, kein Abo.</span></li>
       </ul>
-      <p class="small">Plus enthält den Sync auf iPhone, iPad und Mac und den Wochenrückblick. Wer 2nd Brain schon vor Plus
-        genutzt hat, bekommt Plus für immer geschenkt. Preise in anderen Ländern legt der App Store fest.</p>
+      <div class="gift">
+        <b>🎁 Danke an alle, die von Anfang an dabei sind</b>
+        <span>Wer 2nd Brain schon vor Plus genutzt hat, bekommt Plus <strong>für immer gratis</strong> – automatisch, ohne
+          etwas zu tun. Auch auf neuen Geräten, sobald du dich mit deinem bisherigen Konto anmeldest.</span>
+      </div>
+      <p class="small">Plus enthält den Sync auf iPhone, iPad und Mac und den Wochenrückblick. Preise in anderen Ländern legt
+        der App Store fest.</p>
     </section>
 
     <section id="kontakt" aria-labelledby="k-title">
@@ -145,6 +154,12 @@
           <details>
             <summary>Kostet 2nd Brain etwas?</summary>
             <p>Das Wichtigste ist gratis, ohne Werbung. Sync und Wochenrückblick gehören zu Plus: CHF 1 im Monat, CHF 9 im Jahr (14 Tage gratis) oder einmalig CHF 24. Siehe <a href="#preise">Preise</a>.</p>
+          </details>
+          <details>
+            <summary>Ich nutze 2nd Brain schon länger – muss ich jetzt zahlen?</summary>
+            <p>Nein. Wer 2nd Brain vor Plus genutzt hat, bekommt Plus für immer gratis. Das erkennt die App automatisch: an den
+              Notizen auf deinem Gerät oder an deinem Sync-Konto. Falls es einmal nicht klappt, z. B. nach dem Neuinstallieren
+              ohne Konto, <a href="mailto:fabioberta@me.com?subject=2nd%20Brain%20Plus">schreib mir</a> – ich schalte es dir frei.</p>
           </details>
           <details>
             <summary>Wo werden meine Notizen gespeichert?</summary>
