@@ -12,9 +12,14 @@
   main { max-width: 640px; margin: 0 auto; padding: 48px 20px 64px; }
   h1 { font-size: 26px; margin: 0 0 4px; } h2 { font-size: 17px; margin: 28px 0 6px; }
   p, li { color: var(--fg); } .muted { color: var(--muted); font-size: 14px; }
+  .lang { position: absolute; top: 16px; right: 16px; display: flex; border: 1px solid rgba(128,128,128,.35); border-radius: 999px; overflow: hidden; font-size: 14px; }
+  .lang a { padding: 5px 11px; text-decoration: none; color: var(--muted); }
+  .lang a[aria-current] { background: var(--fg); color: var(--bg); }
+  body { position: relative; }
 </style>
 </head>
 <body>
+<nav class="lang" aria-label="Sprache / Language"><a href="privacy.html" hreflang="de" lang="de" aria-current="true" onclick="try{localStorage.setItem('lang','de')}catch(e){}">DE</a><a href="en/privacy.html" hreflang="en" lang="en" onclick="try{localStorage.setItem('lang','en')}catch(e){}">EN</a></nav>
 <main>
   <h1>Datenschutz</h1>
   <p class="muted">2nd Brain · Stand: November 2026</p>

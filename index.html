@@ -11,6 +11,12 @@
   <meta property="og:image" content="https://2ndbrain.ch/img/01-write.jpg">
   <link rel="icon" href="icons/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="alternate" hreflang="de" href="https://2ndbrain.ch/">
+  <link rel="alternate" hreflang="en" href="https://2ndbrain.ch/en/">
+  <script>
+    // Erster Besuch ohne gewählte Sprache und Browser nicht auf Deutsch → englische Seite
+    try { if (!localStorage.getItem('lang') && !/^de\b/i.test(navigator.language || '')) location.replace('en/' + location.hash); } catch (e) {}
+  </script>
   <style>
     :root {
       --bg: #fbfaf7; --fg: #1d1d1b; --muted: #6f6b64; --line: #ebe8e1; --card: #ffffff; --accent: #1d1d1b;
@@ -72,6 +78,11 @@
     details[open] summary::after { content: "–"; }
     details p { margin: 8px 0 0; color: var(--muted); }
     .faq { margin-top: 28px; }
+    .lang { position: absolute; top: calc(env(safe-area-inset-top) + 16px); right: 16px; display: flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; font-size: .85rem; background: var(--card); }
+    .lang a { padding: 6px 12px; text-decoration: none; color: var(--muted); }
+    .lang a[aria-current] { background: var(--fg); color: var(--bg); }
+    body { position: relative; }
+
     .gift { margin: 16px 0 10px; padding: 18px 20px; border-radius: 18px; border: 1.5px solid var(--fg); background: var(--card); }
     .gift b { display: block; margin-bottom: 4px; }
     .gift span { color: var(--muted); font-size: .95rem; }
@@ -83,6 +94,7 @@
   </style>
 </head>
 <body>
+  <nav class="lang" aria-label="Sprache / Language"><a href="./" hreflang="de" lang="de" aria-current="true" onclick="try{localStorage.setItem('lang','de')}catch(e){}">DE</a><a href="en/" hreflang="en" lang="en" onclick="try{localStorage.setItem('lang','en')}catch(e){}">EN</a></nav>
   <header class="wrap">
     <img class="mark" src="icons/mark.png" alt="">
     <h1>2nd Brain</h1>

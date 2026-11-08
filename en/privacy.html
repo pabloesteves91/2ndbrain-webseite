@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy – 2nd Brain</title>
+<link rel="icon" href="../icons/favicon.png" type="image/png">
+<style>
+  :root { --bg: #fbfaf7; --fg: #1d1d1b; --muted: #6f6b64; color-scheme: light dark; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #121212; --fg: #e9e7e2; --muted: #969390; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 48px 20px 64px; }
+  h1 { font-size: 26px; margin: 0 0 4px; } h2 { font-size: 17px; margin: 28px 0 6px; }
+  .muted { color: var(--muted); font-size: 14px; } a { color: inherit; }
+  .lang { position: absolute; top: 16px; right: 16px; display: flex; border: 1px solid rgba(128,128,128,.35); border-radius: 999px; overflow: hidden; font-size: 14px; }
+  .lang a { padding: 5px 11px; text-decoration: none; color: var(--muted); }
+  .lang a[aria-current] { background: var(--fg); color: var(--bg); }
+  body { position: relative; }
+</style>
+</head>
+<body>
+<nav class="lang" aria-label="Sprache / Language"><a href="../privacy.html" hreflang="de" lang="de" onclick="try{localStorage.setItem('lang','de')}catch(e){}">DE</a><a href="privacy.html" hreflang="en" lang="en" aria-current="true" onclick="try{localStorage.setItem('lang','en')}catch(e){}">EN</a></nav>
+<main>
+  <h1>Privacy</h1>
+  <p class="muted">2nd Brain · As of November 2026</p>
+
+  <h2>In short</h2>
+  <p>Your notes belong to you. There are no ads, no tracking and no analysis of your behaviour.</p>
+
+  <h2>Without an account</h2>
+  <p>All notes and images are stored only on your device. Nothing leaves your device – except feedback you send yourself.</p>
+
+  <h2>With cloud sync</h2>
+  <p>If you sign in (email, Apple or Google), your notes and images are stored in Google Firebase (Firestore and Cloud
+    Storage) so they’re available on your devices. Stored are:</p>
+  <ul>
+    <li>your email address or the identifier of your Apple/Google account,</li>
+    <li>the text of your notes, attached images and their date, category and status.</li>
+  </ul>
+  <p>Only you can access your data. It is not sold, not analysed and not shared with third parties (except Google as the
+    technical provider for storage).</p>
+
+  <h2>Feedback</h2>
+  <p>If you send something via Settings → Help → “Send feedback”, your text, the time, the app version and the platform
+    (iPhone/iPad or Mac) are stored in Google Firestore – plus your account identifier if you’re signed in. Only I read the
+    feedback, to improve the app. It is not shared.</p>
+
+  <h2>Purchases</h2>
+  <p>Purchases of 2nd Brain Plus are handled entirely by Apple. We receive no payment data, only whether Plus is active.</p>
+
+  <h2>Deleting</h2>
+  <p>In the app, Settings → Cloud sync → “Delete account” removes your account and all data in the cloud. “Delete everything”
+    removes the data on the device.</p>
+
+  <h2>Contact</h2>
+  <p>Privacy questions: <a href="mailto:fabioberta@me.com">fabioberta@me.com</a> · <a href="./">2ndbrain.ch</a></p>
+</main>
+</body>
+</html>

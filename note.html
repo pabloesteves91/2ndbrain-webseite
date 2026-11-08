@@ -25,36 +25,52 @@
     .btn.primary { margin-top: 20px; background: var(--accent); color: var(--bg); border-color: var(--accent); }
     .small { margin-top: 18px; font-size: .88rem; color: var(--muted); }
     .small a { color: var(--fg); }
+    .lang { position: absolute; top: 16px; right: 16px; display: flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; font-size: .85rem; background: var(--card); }
+    .lang a { padding: 5px 11px; text-decoration: none; color: var(--muted); }
+    .lang a[aria-current] { background: var(--fg); color: var(--bg); }
+    body { position: relative; }
     :focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
   </style>
 </head>
 <body>
+  <nav class="lang" aria-label="Sprache / Language"><a href="#" data-l="de" lang="de">DE</a><a href="#" data-l="en" lang="en">EN</a></nav>
   <main>
-    <div class="head"><img src="icons/apple-touch-icon.png" alt=""><span>Jemand hat dir eine Notiz aus <b>2nd Brain</b> geschickt</span></div>
+    <div class="head"><img src="icons/apple-touch-icon.png" alt=""><span data-de="Jemand hat dir eine Notiz aus &lt;b&gt;2nd Brain&lt;/b&gt; geschickt" data-en="Someone sent you a note from &lt;b&gt;2nd Brain&lt;/b&gt;">Jemand hat dir eine Notiz aus <b>2nd Brain</b> geschickt</span></div>
     <div id="note" class="note" aria-live="polite">Notiz wird geladen …</div>
     <div id="cat" class="cat" hidden></div>
-    <a id="app" class="btn primary" hidden>In 2nd Brain öffnen</a>
-    <a class="btn" href="https://apps.apple.com/app/id6829497962">2nd Brain im App Store laden</a>
-    <button id="copy" type="button" class="btn" hidden>Text kopieren</button>
-    <p class="small">„In 2nd Brain öffnen“ legt die Notiz als neue Notiz in deiner App ab. Die Notiz steckt nur in diesem Link,
-      sie wird nirgends gespeichert. <a href="./">Mehr über 2nd Brain</a></p>
+    <a id="app" class="btn primary" hidden data-de="In 2nd Brain öffnen" data-en="Open in 2nd Brain">In 2nd Brain öffnen</a>
+    <a class="btn" href="https://apps.apple.com/app/id6829497962" data-de="2nd Brain im App Store laden" data-en="Get 2nd Brain on the App Store">2nd Brain im App Store laden</a>
+    <button id="copy" type="button" class="btn" hidden data-de="Text kopieren" data-en="Copy text">Text kopieren</button>
+    <p class="small" data-de="„In 2nd Brain öffnen“ legt die Notiz als neue Notiz in deiner App ab. Die Notiz steckt nur in diesem Link, sie wird nirgends gespeichert. &lt;a href=&quot;./&quot;&gt;Mehr über 2nd Brain&lt;/a&gt;" data-en="“Open in 2nd Brain” adds the note as a new note in your app. The note lives only in this link – it isn’t stored anywhere. &lt;a href=&quot;en/&quot;&gt;More about 2nd Brain&lt;/a&gt;"></p>
   </main>
   <script type="module">
     import { decodeNote } from './js/share-codec.js';
     const code = location.hash.slice(1);
     const $ = id => document.getElementById(id);
+    // Sprache: gewählt (localStorage) oder Browser; Umschalten ohne Neuladen.
+    let L; try { L = localStorage.getItem('lang'); } catch {}
+    L = L === 'de' || L === 'en' ? L : (/^de\b/i.test(navigator.language || '') ? 'de' : 'en');
+    const T = (de, en) => (L === 'en' ? en : de);
+    const paint = () => {
+      document.documentElement.lang = L;
+      document.title = T('Geteilte Notiz · 2nd Brain', 'Shared note · 2nd Brain');
+      for (const el of document.querySelectorAll('[data-de]')) el.innerHTML = el.dataset[L];
+      for (const a of document.querySelectorAll('.lang a')) a.toggleAttribute('aria-current', a.dataset.l === L);
+    };
+    for (const a of document.querySelectorAll('.lang a')) a.onclick = e => { e.preventDefault(); L = a.dataset.l; try { localStorage.setItem('lang', L); } catch {} paint(); };
+    paint();
     try {
       if (!/^[\w-]+$/.test(code)) throw new Error();
       const n = await decodeNote(code);
       $('note').textContent = n.text;
-      if (n.category) { $('cat').textContent = `Kategorie: ${n.category}`; $('cat').hidden = false; }
+      if (n.category) { const c = n.category.replace(/[&<>"]/g, x => `&#${x.charCodeAt(0)};`); $('cat').dataset.de = `Kategorie: ${c}`; $('cat').dataset.en = `Category: ${c}`; paint(); $('cat').hidden = false; }
       $('app').href = `secondbrain://import?d=${code}`;
       $('copy').onclick = async () => {
-        try { await navigator.clipboard.writeText(n.text); $('copy').textContent = 'Kopiert'; } catch { $('copy').textContent = 'Kopieren nicht möglich'; }
+        try { await navigator.clipboard.writeText(n.text); $('copy').textContent = T('Kopiert', 'Copied'); } catch { $('copy').textContent = T('Kopieren nicht möglich', 'Copying not possible'); }
       };
       $('app').hidden = false; $('copy').hidden = false;
     } catch {
-      $('note').textContent = 'Dieser Link enthält keine gültige Notiz. Vielleicht wurde er beim Kopieren abgeschnitten.';
+      $('note').textContent = T('Dieser Link enthält keine gültige Notiz. Vielleicht wurde er beim Kopieren abgeschnitten.', 'This link doesn’t contain a valid note. Maybe it was cut off when copying.');
     }
   </script>
 </body>

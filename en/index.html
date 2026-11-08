@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>2nd Brain – Open. Write. Close.</title>
+  <meta name="description" content="2nd Brain is the calm notes app for iPhone, iPad and Mac: open, jot down a thought, done. Sort it calmly in the evening.">
+  <meta name="apple-itunes-app" content="app-id=6829497962">
+  <meta property="og:title" content="2nd Brain">
+  <meta property="og:description" content="Open. Write. Close. The calm notes app for iPhone, iPad and Mac.">
+  <meta property="og:image" content="https://2ndbrain.ch/img/en/01-write.jpg">
+  <link rel="icon" href="../icons/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="alternate" hreflang="de" href="https://2ndbrain.ch/">
+  <link rel="alternate" hreflang="en" href="https://2ndbrain.ch/en/">
+  <style>
+    :root {
+      --bg: #fbfaf7; --fg: #1d1d1b; --muted: #6f6b64; --line: #ebe8e1; --card: #ffffff; --accent: #1d1d1b;
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", Roboto, sans-serif;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #121212; --fg: #e9e7e2; --muted: #969390; --line: #262523; --card: #1a1a19; --accent: #e9e7e2; color-scheme: dark; }
+      .mark { filter: invert(1); }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.55 var(--font); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+    :focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; border-radius: 6px; }
+
+    /* Kopf */
+    header { padding: calc(env(safe-area-inset-top) + 56px) 0 40px; text-align: center; }
+    .mark { width: 72px; height: 72px; opacity: .9; }
+    h1 { font-size: clamp(2.4rem, 7vw, 3.6rem); line-height: 1.05; letter-spacing: -.03em; margin: 18px 0 10px; font-weight: 650; }
+    .claim { font-size: clamp(1.15rem, 3vw, 1.4rem); color: var(--muted); margin: 0 auto; max-width: 30em; }
+    .lead { max-width: 34em; margin: 18px auto 0; }
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 28px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px;
+      border-radius: 14px; font-weight: 550; text-decoration: none; font-size: 1rem; }
+    .btn.primary { background: var(--accent); color: var(--bg); }
+    .btn.secondary { border: 1px solid var(--line); background: var(--card); }
+    .small { font-size: .9rem; color: var(--muted); }
+    .platforms { margin-top: 14px; }
+
+    /* Bildschirmfotos */
+    .shots { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 12px 20px 26px;
+      margin: 0 auto; max-width: 1240px; -webkit-overflow-scrolling: touch; }
+    .shots img { flex: 0 0 auto; width: min(62vw, 250px); height: auto; aspect-ratio: 660 / 1434; border-radius: 22px;
+      scroll-snap-align: center; box-shadow: 0 12px 40px rgba(0, 0, 0, .10); background: var(--line); }
+    /* zentriert, solange alles Platz hat – sonst scrollbar ohne abgeschnittenen Anfang */
+    .shots img:first-child { margin-left: auto; } .shots img:last-child { margin-right: auto; }
+
+    section { padding: 48px 0; }
+    h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); letter-spacing: -.02em; margin: 0 0 8px; font-weight: 650; }
+    .intro { color: var(--muted); margin: 0 0 26px; max-width: 36em; }
+
+    /* Funktionen */
+    .features { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; padding: 0; margin: 0; list-style: none; }
+    .features li { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; }
+    .features b { display: block; font-size: 1.02rem; margin-bottom: 4px; }
+    .features span { color: var(--muted); font-size: .95rem; }
+
+    /* Kontakt & FAQ */
+    .contact { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 26px; }
+    .contact .btn { margin-top: 6px; }
+    details { border-top: 1px solid var(--line); padding: 14px 0; }
+    details:last-child { border-bottom: 1px solid var(--line); }
+    summary { cursor: pointer; font-weight: 550; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--muted); font-weight: 400; }
+    details[open] summary::after { content: "–"; }
+    details p { margin: 8px 0 0; color: var(--muted); }
+    .faq { margin-top: 28px; }
+    .lang { position: absolute; top: calc(env(safe-area-inset-top) + 16px); right: 16px; display: flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; font-size: .85rem; background: var(--card); }
+    .lang a { padding: 6px 12px; text-decoration: none; color: var(--muted); }
+    .lang a[aria-current] { background: var(--fg); color: var(--bg); }
+    body { position: relative; }
+
+    .gift { margin: 16px 0 10px; padding: 18px 20px; border-radius: 18px; border: 1.5px solid var(--fg); background: var(--card); }
+    .gift b { display: block; margin-bottom: 4px; }
+    .gift span { color: var(--muted); font-size: .95rem; }
+    .gift strong { color: var(--fg); }
+
+    footer { padding: 40px 0 calc(env(safe-area-inset-bottom) + 40px); color: var(--muted); font-size: .9rem; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 10px; }
+    footer a { color: var(--fg); text-underline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <nav class="lang" aria-label="Sprache / Language"><a href="../" hreflang="de" lang="de" onclick="try{localStorage.setItem('lang','de')}catch(e){}">DE</a><a href="./" hreflang="en" lang="en" aria-current="true" onclick="try{localStorage.setItem('lang','en')}catch(e){}">EN</a></nav>
+  <header class="wrap">
+    <img class="mark" src="../icons/mark.png" alt="">
+    <h1>2nd Brain</h1>
+    <p class="claim">Open. Write. Close.</p>
+    <p class="lead">The calm notes app: a blank page with a cursor is waiting when you open it. You write down your thought
+      and put it away. Sorting happens in the evening, calmly.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://apps.apple.com/app/id6829497962">Download on the App Store</a>
+      <a class="btn secondary" href="#funktionen">What 2nd Brain does</a>
+    </div>
+    <p class="small platforms">For iPhone, iPad and Mac · free · no ads, no tracking</p>
+  </header>
+
+  <div class="shots" role="region" aria-label="Screenshots" tabindex="0">
+    <img src="../img/en/01-write.jpg" alt="Blank page with cursor: open, write, close" loading="lazy" width="660" height="1434">
+    <img src="../img/en/02-photo.jpg" alt="Note with an attached photo" loading="lazy" width="660" height="1434">
+    <img src="../img/en/03-tags.jpg" alt="Category suggestions when typing #" loading="lazy" width="660" height="1434">
+    <img src="../img/en/04-today.jpg" alt="Evening review: your day at a glance" loading="lazy" width="660" height="1434">
+    <img src="../img/en/05-week.jpg" alt="Weekly review in dark mode" loading="lazy" width="660" height="1434">
+    <img src="../img/en/06-all.jpg" alt="All notes with search and categories" loading="lazy" width="660" height="1434">
+  </div>
+
+  <main class="wrap">
+    <section id="funktionen" aria-labelledby="f-title">
+      <h2 id="f-title">Features</h2>
+      <p class="intro">Everything you need for quick thoughts, and nothing that distracts.</p>
+      <ul class="features">
+        <li><b>Write instantly</b><span>A blank page when you open, everything saves automatically. Pull down to put the note away.</span></li>
+        <li><b>Images</b><span>Take photos or attach them from your library, view them large, zoom and save to Photos.</span></li>
+        <li><b>#Categories & lists</b><span>Type # and 2nd Brain suggests categories. Lists starting with - continue by themselves.</span></li>
+        <li><b>Evening & weekly review</b><span>Sort your day calmly in the evening, look back on the week on Sunday.</span></li>
+        <li><b>Reminders</b><span>One tap turns a #task into a reminder at the time you choose.</span></li>
+        <li><b>Sync on all devices</b><span>Optional with an account: notes and images on iPhone, iPad and Mac.</span></li>
+        <li><b>Face ID</b><span>Private thoughts stay private – the app locks itself if you like.</span></li>
+        <li><b>Sharing</b><span>Share notes as text or as a link that opens in the other person’s 2nd Brain.</span></li>
+        <li><b>Widget, Siri & share sheet</b><span>“New thought” via widget or shortcut, add content from other apps.</span></li>
+        <li><b>iPad & Mac</b><span>Large layout, keyboard shortcuts and mouse & trackpad support.</span></li>
+        <li><b>Accessibility</b><span>VoiceOver, larger text, high contrast, dark mode and reduced motion.</span></li>
+        <li><b>Your data</b><span>Without an account everything stays on your device. No ads, no tracking.</span></li>
+      </ul>
+    </section>
+
+    <section id="preise" aria-labelledby="p-title">
+      <h2 id="p-title">Pricing</h2>
+      <p class="intro">All the essentials are free. With Plus you support 2nd Brain – and get sync and the weekly review on top.</p>
+      <ul class="features prices">
+        <li><b>Free</b><span>Writing, images, #categories, lists, evening review, reminders, Face ID, sharing, widget and export.</span></li>
+        <li><b>Plus · Month · CHF 1</b><span>🥐 less than a croissant. Cancel monthly.</span></li>
+        <li><b>Plus · Year · CHF 9</b><span>🥪 like a sandwich – for the whole year. The first 14 days are free.</span></li>
+        <li><b>Plus · Lifetime · CHF 24</b><span>📖 like a paperback – just once, no subscription.</span></li>
+      </ul>
+      <div class="gift">
+        <b>🎁 Thank you to everyone who’s been here from the start</b>
+        <span>If you used 2nd Brain before Plus, you get Plus <strong>free forever</strong> – automatically, nothing to do.
+          Also on new devices, as soon as you sign in with your existing account.</span>
+      </div>
+      <p class="small">Plus includes sync on iPhone, iPad and Mac and the weekly review. Prices in other countries are set by the
+        App Store.</p>
+    </section>
+
+    <section id="kontakt" aria-labelledby="k-title">
+      <h2 id="k-title">Contact & support</h2>
+      <div class="contact">
+        <p>Questions, bugs or ideas? Write to me – I answer personally. In the app you can also use
+          Settings → Help → “Send feedback”.</p>
+        <a class="btn primary" href="mailto:fabioberta@me.com?subject=2nd%20Brain">Email fabioberta@me.com</a>
+
+        <div class="faq">
+          <details>
+            <summary>Does 2nd Brain cost anything?</summary>
+            <p>The essentials are free, without ads. Sync and the weekly review are part of Plus: CHF 1 a month, CHF 9 a year (14 days free) or CHF 24 once. See <a href="#preise">Pricing</a>.</p>
+          </details>
+          <details>
+            <summary>I’ve been using 2nd Brain for a while – do I have to pay now?</summary>
+            <p>No. If you used 2nd Brain before Plus, you get Plus free forever. The app recognises this automatically: from the
+              notes on your device or from your sync account. If it ever doesn’t work, e.g. after reinstalling without an
+              account, <a href="mailto:fabioberta@me.com?subject=2nd%20Brain%20Plus">write to me</a> – I’ll unlock it for you.</p>
+          </details>
+          <details>
+            <summary>Where are my notes stored?</summary>
+            <p>Without an account only on your device. With cloud sync they are also transferred encrypted to Google Firebase, so
+              they’re available on all your devices. Only you have access. More in the <a href="privacy.html">privacy policy</a>.</p>
+          </details>
+          <details>
+            <summary>How do I sync iPhone, iPad and Mac?</summary>
+            <p>In the app, go to Settings → Cloud sync and sign in with Apple, Google or email – on every device with the same account.</p>
+          </details>
+          <details>
+            <summary>How do I delete my account and data?</summary>
+            <p>Settings → Cloud sync → “Delete account” removes the account and all data in the cloud. “Delete everything” under
+              Data removes the notes on the device.</p>
+          </details>
+          <details>
+            <summary>A shared link doesn’t open the app?</summary>
+            <p>Without the app installed, the link shows the note in the browser. If 2nd Brain is installed, tap “Open in 2nd Brain”.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <nav aria-label="Footer">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="#kontakt">Contact & support</a>
+      <a href="https://apps.apple.com/app/id6829497962">App Store</a>
+    </nav>
+    © 2026 Fabio Andrea Berta
+  </footer>
+</body>
+</html>
