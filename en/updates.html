@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What’s new – 2nd Brain</title>
+<link rel="icon" href="../icons/favicon.png" type="image/png">
+<style>
+  :root { --bg: #fbfaf7; --fg: #1d1d1b; --muted: #6f6b64; color-scheme: light dark; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #121212; --fg: #e9e7e2; --muted: #969390; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 48px 20px 64px; }
+  h1 { font-size: 26px; margin: 0 0 4px; } h2 { font-size: 17px; margin: 28px 0 6px; }
+  .muted { color: var(--muted); font-size: 14px; } a { color: inherit; }
+  .lang { position: absolute; top: 16px; right: 16px; display: flex; border: 1px solid rgba(128,128,128,.35); border-radius: 999px; overflow: hidden; font-size: 14px; }
+  .lang a { padding: 5px 11px; text-decoration: none; color: var(--muted); }
+  .lang a[aria-current] { background: var(--fg); color: var(--bg); }
+  body { position: relative; }
+  .ver { border-top: 1px solid rgba(128,128,128,.25); margin-top: 28px; padding-top: 4px; }
+  .ver h2 { display: flex; align-items: baseline; gap: 10px; margin-bottom: 2px; }
+  .tag { font-size: 12px; font-weight: 600; padding: 1px 8px; border-radius: 999px; background: var(--fg); color: var(--bg); }
+  ul { padding-left: 20px; } li { margin: 4px 0; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<nav class="lang" aria-label="Sprache / Language"><a href="../updates.html" hreflang="de" lang="de" onclick="try{localStorage.setItem('lang','de')}catch(e){}">DE</a><a href="updates.html" hreflang="en" lang="en" aria-current="true" onclick="try{localStorage.setItem('lang','en')}catch(e){}">EN</a></nav>
+<main>
+  <h1>What’s new</h1>
+  <p class="muted">2nd Brain · App Store updates</p>
+
+  <section class="ver" id="v2.3">
+    <h2>Version 2.3 <span class="tag">current</span></h2>
+    <p class="muted">November 2026</p>
+    <ul>
+      <li>Notes, journal and reminders in one app – now also in English</li>
+      <li>New: <b>2nd Brain Plus</b> with sync across devices and the weekly review – monthly, yearly (14 days free) or once for lifetime. Anyone who used 2nd Brain before gets Plus for free, forever.</li>
+      <li>Your own categories now sync too – also after reinstalling and on new devices</li>
+      <li>Reminders also work for notes with several #tags</li>
+      <li>Taking photos with the camera fixed</li>
+      <li>Manage your subscription right in the app, safe confirmation before deleting</li>
+    </ul>
+  </section>
+
+  <section class="ver" id="earlier">
+    <h2>Earlier versions</h2>
+    <p class="muted">Up to version 2.2, October–November 2026</p>
+    <ul>
+      <li>A blank page when you open the app, put thoughts away with one gesture, #categories with suggestions</li>
+      <li>Daily review in the evening, weekly review and old thoughts that come back</li>
+      <li>Tasks with #task and a reminder at the time you choose</li>
+      <li>Widget, Siri shortcut “New thought” and share menu</li>
+      <li>Share notes as text or link</li>
+      <li>Photos from the camera or library, large image view with zoom</li>
+      <li>Face ID, accessibility (VoiceOver, larger text, contrast)</li>
+      <li>Dedicated iPad layout, keyboard shortcuts and trackpad on Mac</li>
+      <li>Introduction on first launch, feedback right from the app</li>
+    </ul>
+  </section>
+
+  <p class="muted" style="margin-top:36px"><a href="./">← 2ndbrain.ch</a> · <a href="https://apps.apple.com/app/id6829497962">App Store</a></p>
+</main>
+</body>
+</html>
