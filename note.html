@@ -30,6 +30,7 @@
     .lang a[aria-current] { background: var(--fg); color: var(--bg); }
     body { position: relative; }
     :focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+    .head { padding-right: 96px; } /* nicht unter den DE/EN-Schalter laufen */
   </style>
 </head>
 <body>
@@ -59,7 +60,17 @@
     };
     for (const a of document.querySelectorAll('.lang a')) a.onclick = e => { e.preventDefault(); L = a.dataset.l; try { localStorage.setItem('lang', L); } catch {} paint(); };
     paint();
-    try {
+    // Einladung zu einer gemeinsamen Notiz (j…): Inhalt liegt nur in der App, hier nur der Weg dorthin.
+    if (/^j[A-Za-z0-9]+_[a-z0-9]+$/.test(code)) {
+      document.querySelector('.head span').dataset.de = 'Du wurdest eingeladen, eine Notiz in <b>2nd Brain</b> gemeinsam zu bearbeiten';
+      document.querySelector('.head span').dataset.en = 'You’ve been invited to edit a note together in <b>2nd Brain</b>';
+      $('note').dataset.de = 'Öffne diesen Link auf dem iPhone, iPad oder Mac mit 2nd Brain. Melde dich in der App an (Einstellungen → Cloud-Sync) – danach erscheint die gemeinsame Notiz. Gemeinsame Notizen gehören zu 2nd Brain Plus.';
+      $('note').dataset.en = 'Open this link on your iPhone, iPad or Mac with 2nd Brain. Sign in in the app (Settings → Cloud sync) – the shared note will then appear. Shared notes are part of 2nd Brain Plus.';
+      document.querySelector('p.small').dataset.de = 'Gemeinsame Notizen werden zwischen allen Beteiligten live abgeglichen. <a href="./">Mehr über 2nd Brain</a>';
+      document.querySelector('p.small').dataset.en = 'Shared notes stay in sync live for everyone involved. <a href="en/">More about 2nd Brain</a>';
+      $('app').href = `secondbrain://import?d=${code}`; $('app').hidden = false;
+      paint();
+    } else try {
       if (!/^[\w-]+$/.test(code)) throw new Error();
       const n = await decodeNote(code);
       $('note').textContent = n.text;
